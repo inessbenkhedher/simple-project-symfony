@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Liste des Montages</h2>
+        </div>
+        <div class="col-md-6 text-right">
+            <div class="filter-form">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+    <div class="row">
+        {% for mon in montage %}
+        
+            <div class="col-md-3 text-center">
+                <div class="product-box center">
+                    <a href="'id':mon.id ">
+                        {% if mon.image is not null %}
+                            <img src="{{ mon.image }}" class="ard-img-top" width="130" height="130">
+                        {% endif %}
+                    </a>
+
+                    <a href="#">
+                        <h3>{{ mon.nomMontage }}</h3>
+                    </a>
+
+                    <div class="price">cout: {{ mon.cout }}</div>
+                    <div class="price">client :{{ mon.client }}</div>
+                    <div class="price">created At :{{ mon.createdat | date('d/m/Y')}}</div>
+                 {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('edit_montage', {'id':mon.id }) }}" class="btn btn-info btn-sm">Modifier</a>
+                    <a href="{{ path('mont_delete', {'id':mon.id }) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                    {% endif %}
+                </div>
+            </div>
+            <br>
+        {% else %}
+            <div class="alert alert-warning col-md-12" role="alert">
+                Aucun Montage trouvé.
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

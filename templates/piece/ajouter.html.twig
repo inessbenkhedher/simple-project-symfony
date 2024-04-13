@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block title %} Ajouter Piece{% endblock %}
+{% block body %}
+    <div class="container">
+        <h2 class="text-center">Ajouter Piece</h2><br>
+
+        {{ form_start(f, {'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_errors(f) }}
+
+        <div class="form-group">
+            {{ form_label(f.nomPiece, 'Nom Piece', {'label_attr': {'class': 'col-sm-2 control-label text-primary'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(f.nomPiece, {'attr': {'class': 'form-control', 'style': 'border-color: #3498db;'}}) }}
+                {{ form_errors(f.nomPiece) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(f.quantite, 'Quantite', {'label_attr': {'class': 'col-sm-2 control-label text-success'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(f.quantite, {'attr': {'class': 'form-control', 'style': 'border-color: #2ecc71;'}}) }}
+                {{ form_errors(f.quantite) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(f.unite, 'Unite', {'label_attr': {'class': 'col-sm-2 control-label text-warning'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(f.unite, {'attr': {'class': 'form-control', 'style': 'border-color: #f39c12;'}}) }}
+                {{ form_errors(f.unite) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(f.fournisseur, 'Fournisseur', {'label_attr': {'class': 'col-sm-2 control-label text-danger'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(f.fournisseur, {'attr': {'class': 'form-control', 'style': 'border-color: #e74c3c;'}}) }}
+                {{ form_errors(f.fournisseur) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(f.image, 'Image', {'label_attr': {'class': 'col-sm-2 control-label text-info'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(f.image, {'attr': {'class': 'form-control', 'style': 'border-color: #3498db;'}}) }}
+                {{ form_errors(f.image) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+      {{ form_label(f.montage, 'Montage', {'label_attr': {'class': 'col-sm-2 control-label text-info'}}) }}
+<div class="col-sm-10">
+    {{ form_widget(f.montage, {'attr': {'class': 'form-control', 'style': 'border-color: #3498db;'}}) }}
+    {{ form_errors(f.montage) }}
+</div>
+
+</div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
+
+        {{ form_end(f) }}
+    </div>
+{% endblock %}

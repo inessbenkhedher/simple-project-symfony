@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}" />
+    {% endblock %}
+     <style>
+        .bg-lightblue {
+            background-color: #add8e6; /* Light blue color */
+        }
+           .btn-transparent {
+            background-color: transparent;
+            color: #333; /* Dark text color for the buttons */
+        }
+    </style>
+</head>
+<body>
+ <nav class="navbar  bg-lightblue" style="height: 68px;">
+        <div class="container-fluid">
+            <!-- Logo and Text on the Left -->
+            <a class="navbar-brand" href="{{ path('home')}}">
+                <img src="{{ asset('image/logo.png') }}" width="80" height="70" class="d-inline-block align-top" alt="Logo"
+                style=" margin-top: -16px;">
+               
+            </a>
+
+            <!-- Buttons on the Right -->
+                <div class="navbar-nav navbar-right" style="margin-right: 10px; margin-top: 10px;">
+                <a class="btn btn-transparent" href="{{ path('home')}}">Liste Montage</a>
+                <a class="btn btn-transparent" href="{{ path('list')}}">Liste Piece</a>
+                {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-transparent" href="{{ path('add_montage') }}">Add Montage</a>
+    <a class="btn btn-transparent" href="{{ path('add_piece') }}">Add Piece</a>
+{% endif %}
+               {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {# User is authenticated, display the "Sign Out" link #}
+    <a class="btn btn-transparent" href="{{ path('security_logout') }}">
+        <img src="{{ asset('image/logout.png') }}" width="30" height="30" class="d-inline-block align-top" alt="Logout Logo">
+        Sign Out
+    </a>
+{% else %}
+    {# User is not authenticated, display the "Sign In" link #}
+    <a class="btn btn-transparent" href="{{ path('login') }}">
+        <img src="{{ asset('image/login.png') }}" width="30" height="30" class="d-inline-block align-top" alt="Login Logo">
+        Sign In
+    </a>
+{% endif %}
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}{% endblock %}
+</body>
+</html>
